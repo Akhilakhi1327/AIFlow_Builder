@@ -1,0 +1,12 @@
+[hasura]
+adminSecret = "nhost-admin-secret"
+webhookSecret = "nhost-webhook-secret"
+
+[auth]
+redirectionUrl = "http://localhost:3000"
+
+[auth.signUp]
+emailVerificationRequired = false
+
+[auth.providers.emailPassword]
+enabled = true

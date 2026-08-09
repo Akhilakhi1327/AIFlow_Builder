@@ -1,0 +1,39 @@
+actions:
+  - name: triggerWorkflowRun
+    definition:
+      kind: synchronous
+      handler: "{{NHOST_FUNCTIONS_URL}}/triggerWorkflowRun"
+      arguments:
+        - name: workflow_id
+          type: uuid!
+      output_type: TriggerWorkflowRunOutput
+      headers:
+        - name: x-action-secret
+          value_from_env: ACTION_SECRET
+  - name: approveStep
+    definition:
+      kind: synchronous
+      handler: "{{NHOST_FUNCTIONS_URL}}/approveStep"
+      arguments:
+        - name: step_run_id
+          type: uuid!
+      output_type: ApproveStepOutput
+      headers:
+        - name: x-action-secret
+          value_from_env: ACTION_SECRET
+custom_types:
+  input_objects: []
+  objects:
+    - name: TriggerWorkflowRunOutput
+      fields:
+        - name: run_id
+          type: uuid
+        - name: status
+          type: String
+    - name: ApproveStepOutput
+      fields:
+        - name: success
+          type: Boolean
+        - name: status
+          type: String
+  scalars: []
