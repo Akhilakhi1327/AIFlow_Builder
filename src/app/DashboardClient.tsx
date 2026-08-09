@@ -472,6 +472,12 @@ export default function DashboardClient() {
     }
   };
 
+  const forceMockMode = () => {
+    localStorage.setItem('use_local_mocks', 'true');
+    seedLocalDatabase();
+    window.location.reload();
+  };
+
   const handleCreateWorkflow = async () => {
     if (!activeOrg || !newWorkflowName) return;
 
@@ -1000,6 +1006,16 @@ export default function DashboardClient() {
                 <span style={{ color: 'var(--color-primary)' }}>viewer123</span>
               </div>
             </div>
+            {!useMocks && (
+              <div style={{ textAlign: 'center', marginTop: '1.25rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
+                <a href="#" style={{ fontSize: '0.8rem', color: 'var(--color-primary)', textDecoration: 'underline' }} onClick={(e) => {
+                  e.preventDefault();
+                  forceMockMode();
+                }}>
+                  Switch to Offline Demo (Mock Mode)
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
