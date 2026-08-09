@@ -289,7 +289,8 @@ export default function DashboardClient() {
   useEffect(() => {
     const isLocal = !process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN ||
                     process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN === 'local' ||
-                    process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN === 'your-nhost-subdomain';
+                    process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN === 'your-nhost-subdomain' ||
+                    (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
 
     if (isLocal) {
       localStorage.setItem('use_local_mocks', 'true');
